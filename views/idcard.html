@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ID Card Preview</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      .id-card-container {
+        max-width: 100%;
+        overflow: auto;
+      }
+      .id-card-image {
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .card-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border: 1px dashed #ccc;
+      }
+      .payment-success-alert {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .alert-dismissible .btn-close {
+        padding: 0.75rem 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <!-- Payment Success Notification -->
+      <div class="d-flex justify-content-center">
+        <div
+          id="paymentSuccessAlert"
+          class="alert alert-success alert-dismissible fade show payment-success-alert mb-4"
+          role="alert"
+        >
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <strong>Payment Successful!</strong> Your membership payment has been
+          processed successfully.
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="card shadow">
+            <div class="card-header text-white">
+              <h2 style="text-align: center" class="mb-0">Membership Card</h2>
+            </div>
+            <div class="card-body text-center">
+              <div id="idCardContainer" class="id-card-container mb-3">
+                <!-- Loader while image is loading -->
+                <div id="idCardLoader" class="card-loader">
+                  <div>
+                    <div class="spinner-border text-danger mb-3" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mb-0">Generating your ID card...</p>
+                  </div>
+                </div>
+                <img
+                  id="idCardImage"
+                  class="id-card-image img-fluid d-none"
+                  alt="ID Card"
+                />
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <a
+                  id="backToFormBtn"
+                  href="/register"
+                  class="btn btn-secondary me-2"
+                  >Back to Form</a
+                >
+                <a id="downloadBtn" class="btn btn-danger">Download ID Card</a>
+                <button id="printBtn" class="btn btn-primary ms-2">
+                  Print ID Card
+                </button>
+              </div>
+
+              <div class="alert alert-info mt-4">
+                <p>
+                  Your ID card is ready. You can download it or print it
+                  directly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const pathSegments = window.location.pathname
+          .split("/")
+          .filter(Boolean);
+        const userId = pathSegments[pathSegments.length - 1];
+
+        const idCardImage = document.getElementById("idCardImage");
+        const idCardLoader = document.getElementById("idCardLoader");
+        const downloadBtn = document.getElementById("downloadBtn");
+        const printBtn = document.getElementById("printBtn");
+        const backToFormBtn = document.getElementById("backToFormBtn");
+        const paymentSuccessAlert = document.getElementById(
+          "paymentSuccessAlert"
+        );
+        const imageUrl = `/api/generate-card/${userId}`;
+
+        // Check if payment status is in URL parameters instead of sessionStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("paymentStatus") === "success") {
+          paymentSuccessAlert.style.display = "block";
+        }
+
+        // Load the ID card image with loader
+        idCardImage.onload = function () {
+          // Hide loader and show image when loaded
+          idCardLoader.style.display = "none";
+          idCardImage.classList.remove("d-none");
+        };
+
+        idCardImage.onerror = function () {
+          idCardLoader.innerHTML =
+            '<div class="text-danger"><i class="bi bi-exclamation-triangle-fill fs-3 mb-2"></i><p>Error loading ID card. Please try again.</p></div>';
+        };
+
+        // Start loading the image
+        idCardImage.src = imageUrl;
+
+        // Set up download button
+        downloadBtn.href = imageUrl;
+        downloadBtn.download = `id-card-${userId}.png`;
+
+        // Set up print button
+        printBtn.addEventListener("click", function () {
+          const printWindow = window.open("", "_blank");
+          printWindow.document.write(`
+            <html>
+              <head>
+                <title>Print ID Card</title>
+                <style>
+                  body {
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                  }
+                  img {
+                    max-width: 100%;
+                    height: auto;
+                    page-break-inside: avoid;
+                  }
+                  @media print {
+                    body {
+                      display: block;
+                      margin: 15mm;
+                    }
+                  }
+                </style>
+              </head>
+              <body>
+                <img src="${imageUrl}" alt="ID Card" />
+                <script>
+                  window.onload = function () {
+                    setTimeout(function () {
+                      window.print();
+                    }, 500);
+                  }
+                <\/script>
+              </body>
+            </html>
+          `);
+          printWindow.document.close();
+        });
+      });
+    </script>
+  </body>
+</html>

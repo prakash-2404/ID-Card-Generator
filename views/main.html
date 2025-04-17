@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>செங்குந்தர் முதலியார் சமுதாய உறுப்பினர் தளம்</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #9c0f0f;
+        --primary-dark: #7a0b0b;
+        --secondary: #ffc107;
+        --dark: #212121;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --success: #28a745;
+        --info: #17a2b8;
+        --white: #ffffff;
+        --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+        color: var(--white);
+        padding: 15px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .logo-icon {
+        font-size: 2rem;
+        margin-right: 10px;
+        color: var(--secondary);
+      }
+
+      .logo-text h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .logo-text p {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        transition: var(--transition);
+        position: fixed;
+        width: 100%;
+        top: 70px;
+        z-index: 999;
+        backdrop-filter: blur(10px);
+      }
+
+      nav.scrolled {
+        background-color: rgba(0, 0, 0, 0.8);
+        box-shadow: var(--shadow);
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+        position: relative;
+      }
+
+      nav ul li a {
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: var(--transition);
+        padding: 8px 15px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      nav ul li a i {
+        margin-right: 5px;
+      }
+
+      nav ul li a:hover {
+        background-color: var(--secondary);
+        color: var(--primary-dark);
+        transform: translateY(-3px);
+      }
+
+      .main-content {
+        margin-top: 130px;
+        min-height: calc(100vh - 130px - 80px);
+      }
+
+      .hero {
+        background: url("/api/placeholder/1200/800") center/cover;
+        position: relative;
+        height: 500px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(156, 15, 15, 0.8),
+          rgba(0, 0, 0, 0.6)
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        color: var(--white);
+        text-align: center;
+        padding: 100px 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      .btn {
+        background-color: var(--secondary);
+        color: var(--dark);
+        border: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+      }
+
+      .btn i {
+        margin-right: 8px;
+      }
+
+      .btn:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--secondary);
+        color: var(--secondary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--secondary);
+        color: var(--dark);
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background-color: var(--secondary);
+        margin: 15px auto 0;
+        border-radius: 2px;
+      }
+
+      .content {
+        background-color: var(--white);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+        transition: var(--transition);
+      }
+
+      .content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .feature-card {
+        background-color: var(--white);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        width: 100px;
+        height: 100px;
+        background-color: rgba(156, 15, 15, 0.1);
+        border-radius: 50%;
+        z-index: -1;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .feature-card:hover::before {
+        transform: scale(6);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        color: var(--gray);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: var(--white);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .form-header h2 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+
+      .form-header p {
+        color: var(--gray);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: var(--transition);
+        background-color: #f9f9f9;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(156, 15, 15, 0.2);
+      }
+
+      .form-control::placeholder {
+        color: #aaa;
+      }
+
+      .input-group {
+        position: relative;
+      }
+
+      .input-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        color: var(--gray);
+      }
+
+      .has-icon {
+        padding-left: 40px;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .checkbox-group input {
+        margin-right: 10px;
+        width: auto;
+      }
+
+      .form-footer {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: var(--gray);
+      }
+
+      .form-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .form-footer a:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+      }
+
+      .login-container {
+        max-width: 450px;
+        margin: 50px auto;
+        background-color: var(--white);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .login-container::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(156, 15, 15, 0.1);
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .login-container::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .login-form {
+        position: relative;
+        z-index: 1;
+      }
+
+      .login-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary);
+        font-size: 2rem;
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .contact-card {
+        background-color: var(--white);
+        border-radius: 15px;
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .contact-icon {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+        display: inline-block;
+        padding: 15px;
+        border-radius: 50%;
+        background-color: rgba(156, 15, 15, 0.1);
+      }
+
+      .contact-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .contact-card p {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .about-image {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .about-text h2 {
+        color: var(--primary);
+        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .page {
+        display: none;
+      }
+
+      .page.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      footer {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+        color: var(--white);
+        text-align: center;
+        padding: 30px 0;
+        margin-top: 30px;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-logo {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-logo i {
+        color: var(--secondary);
+        margin-right: 10px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .footer-links a {
+        color: var(--light);
+        text-decoration: none;
+        margin: 0 15px;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        margin: 0 8px;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background-color: var(--secondary);
+        color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      /* Animations */
+      .fade-in {
+        animation: fadeIn 1s ease;
+      }
+
+      .slide-up {
+        animation: slideUp 0.8s ease;
+      }
+
+      .bounce {
+        animation: bounce 1s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Alert notification */
+      .alert {
+        position: fixed;
+        top: 90px;
+        right: 20px;
+        background-color: var(--success);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        transform: translateX(150%);
+        transition: transform 0.5s ease;
+      }
+
+      .alert.show {
+        transform: translateX(0);
+      }
+
+      .alert i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          padding: 0 10px;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        nav {
+          position: fixed;
+          left: -100%;
+          width: 80%;
+          height: 100vh;
+          top: 70px;
+          background-color: var(--primary-dark);
+          transition: 0.5s;
+          padding: 30px 0;
+          overflow-y: auto;
+        }
+
+        nav.active {
+          left: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        nav ul li {
+          margin: 10px 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        nav ul li a {
+          padding: 10px 20px;
+          width: 80%;
+          margin: 0 auto;
+          justify-content: center;
+        }
+
+        .hero {
+          height: 400px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title h2 {
+          font-size: 1.8rem;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-info {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .logo-text h1 {
+          font-size: 1.2rem;
+        }
+
+        .hero h1 {
+          font-size: 1.5rem;
+        }
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+
+        .form-container,
+        .login-container {
+          padding: 20px;
+        }
+
+        .form-header h2,
+        .login-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo" onclick="navigateTo('home')">
+            <div class="logo-icon">
+              <i class="fas fa-om"></i>
+            </div>
+            <div class="logo-text">
+              <h1>செங்குந்தர் முதலியார்</h1>
+              <p>சமுதாய உறுப்பினர் தளம்</p>
+            </div>
+          </div>
+          <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav id="navbar">
+      <div class="container">
+        <ul class="nav-list">
+          <li>
+            <a onclick="navigateTo('home')"
+              ><i class="fas fa-home"></i> முகப்பு</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('about')"
+              ><i class="fas fa-info-circle"></i> எங்களைப் பற்றி</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('register')"
+              ><i class="fas fa-user-plus"></i> உறுப்பினர் பதிவு</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('login')"
+              ><i class="fas fa-sign-in-alt"></i> உள்நுழைய</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('contact')"
+              ><i class="fas fa-envelope"></i> தொடர்புக்கு</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="alert" id="alert">
+      <i class="fas fa-check-circle"></i>
+      <span id="alert-message">செயல்பாடு வெற்றிகரமாக நிறைவேற்றப்பட்டது!</span>
+    </div>
+
+    <div class="container">
+      <div class="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+          <div class="hero fade-in">
+            <div class="hero-content">
+              <h1 class="animate__animated animate__fadeInDown">
+                செங்குந்தர் முதலியார் சமுதாயத்திற்கு வரவேற்கிறோம்
+              </h1>
+              <p class="animate__animated animate__fadeIn animate__delay-1s">
+                எங்கள் சமுதாயத்தில் இணைந்து பல்வேறு சலுகைகளையும், சேவைகளையும்
+                பெறுங்கள்.
+              </p>
+              <div
+                class="animate__animated animate__fadeInUp animate__delay-1s"
+              >
+                <a onclick="navigateTo('register')" class="btn btn-primary">
+                  <i class="fas fa-user-plus"></i> இப்போதே இணையுங்கள்
+                </a>
+                <a onclick="navigateTo('about')" class="btn btn-outline">
+                  <i class="fas fa-info-circle"></i> மேலும் அறிய
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <section class="section slide-up">
+            <div class="section-title">
+              <h2>சமுதாய சேவைகள்</h2>
+            </div>
+
+            <div class="features">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>கல்வி உதவிகள்</h3>
+                <p>
+                  சமுதாய மாணவர்களுக்கு கல்வி உதவித்தொகை, புத்தக உதவி மற்றும்
+                  பயிற்சி வகுப்புகள்.
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>வேலைவாய்ப்பு உதவி</h3>
+                <p>
+                  சமுதாய உறுப்பினர்களுக்கு வேலைவாய்ப்பு தகவல்கள் மற்றும் திறன்
+                  மேம்பாட்டு பயிற்சிகள்.
+                </p>
+              </div>
+
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <h3>திருமண சேவை</h3>
+                <p>
+                  சமுதாய உறுப்பினர்களுக்கு திருமண தகவல் சேவைகள் மற்றும் நிதி
+                  உதவிகள்.
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+              <h2>எங்கள் சமுதாயத்தைப் பற்றி</h2>
+              <p>
+                செங்குந்தர் முதலியார் சமுதாயம் தமிழகத்தின் முக்கிய சமுதாயங்களில்
+                ஒன்றாகும். எங்கள் சமுதாயம் நெசவு, துணி உற்பத்தி, வர்த்தகம்
+                மற்றும் வேளாண்மை போன்ற பல துறைகளில் சிறந்து விளங்குகிறது.
+              </p>
+              <p>
+                இந்த தளத்தின் மூலம், நீங்கள் எங்கள் சமுதாய உறுப்பினராக பதிவு
+                செய்து, பல்வேறு நிகழ்வுகள், திட்டங்கள் மற்றும் சமுதாய செய்திகளை
+                பெற முடியும்.
+              </p>
+
+              <h3>உறுப்பினர் பயன்கள்:</h3>
+              <ul>
+                <li>சமுதாய நிகழ்வுகளில் பங்கேற்க அழைப்பு</li>
+                <li>கல்வி மற்றும் வேலைவாய்ப்பு உதவிகள்</li>
+                <li>திருமண தகவல் சேவைகள்</li>
+                <li>சமுதாய உறுப்பினர்களுடன் நெட்வொர்க்கிங்</li>
+                <li>சமுதாய மேம்பாட்டு திட்டங்களில் பங்கேற்பு</li>
+              </ul>
+
+              <div
+                class="text-center"
+                style="text-align: center; margin-top: 20px"
+              >
+                <a href="/register" class="btn">
+                  <i class="fas fa-user-plus"></i> உறுப்பினராக பதிவு செய்ய
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
