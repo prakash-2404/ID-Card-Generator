@@ -1,0 +1,62 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  /* Desktop background image */
+  background-image: url(../img/sangam.jpg);
+}
+
+h1 {
+  color: red;
+}
+
+.custom-button {
+  position: fixed;
+  bottom: 150px;
+  right: 130px;
+  background-color: #a01515;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #7e1212;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  body {
+    /* Mobile background image */
+    background-image: url(../img/sangamcard-mobile.jpg);
+  }
+  .custom-button {
+    /* Center the button horizontally for mobile */
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 65px;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+  .custom-button {
+    /* Keep it centered */
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 250px;
+    padding: 7px 14px;
+    font-size: 10px;
+  }
+}
